@@ -387,7 +387,7 @@ network:
       dhcp4: true
       access-points:
         "Goel":
-          password: "goel1234"
+          password: "REDACTED"
 
 ```
 
