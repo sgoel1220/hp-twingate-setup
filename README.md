@@ -32,11 +32,33 @@ When Twingate shows the resource but Mac cannot use SSH/RDP/HTTP, use **`LIFEOS_
 Follow LIFEOS_HP_DIAGNOSIS.md. Client-side Twingate is OK; fix Connector → host path for 172.20.0.254 (or current HP IP). Confirm host up, correct IP in Admin, firewall allows connector. Retest with nc banner, not just TCP connect.
 ```
 
+### Collect diagnostics from HP (for remote review)
+
+On the **HP**:
+
+```bash
+git clone https://github.com/sgoel1220/hp-twingate-setup.git
+cd hp-twingate-setup
+# or: git pull
+bash collect-hp-diag.sh
+```
+
+Writes **`HP_DIAG_REPORT.md`** and tries `git commit` + `git push`.  
+If push fails (auth), run:
+
+```bash
+git add HP_DIAG_REPORT.md
+git commit -m "Add HP_DIAG_REPORT"
+git push
+```
+
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `HP_CHANGE_IP.md` | **Do this now** — move HP to `172.20.0.2`, stop sharing `172.20.0.1` with Vostro |
+| `collect-hp-diag.sh` | **Run on HP** — writes `HP_DIAG_REPORT.md` and pushes |
+| `HP_DIAG_REPORT.md` | Latest on-host diag output (generated; do not hand-edit) |
+| `HP_CHANGE_IP.md` | Move HP to `172.20.0.2`, stop sharing `172.20.0.1` with Vostro |
 | `HP_TWINGATE_SETUP.md` | Full context + Twingate Admin + Mac tests + troubleshooting |
 | `LIFEOS_HP_DIAGNOSIS.md` | Mac client diagnosis: lifeos-hp TCP connects but app data hangs |
 | `README.md` | This file |
