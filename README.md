@@ -32,6 +32,16 @@ When Twingate shows the resource but Mac cannot use SSH/RDP/HTTP, use **`LIFEOS_
 Follow LIFEOS_HP_DIAGNOSIS.md. Client-side Twingate is OK; fix Connector → host path for 172.20.0.254 (or current HP IP). Confirm host up, correct IP in Admin, firewall allows connector. Retest with nc banner, not just TCP connect.
 ```
 
+### Wi-Fi keeps dropping (auto-reconnect watchdog)
+
+On the **HP**:
+
+```bash
+cd ~/hp-twingate-setup && git pull
+bash install-wifi-watchdog.sh
+# logs: journalctl -u wifi-watchdog -f
+```
+
 ### Collect diagnostics from HP (for remote review)
 
 On the **HP**:
